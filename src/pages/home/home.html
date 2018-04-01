@@ -1,18 +1,52 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="bg-color">
+  <div class="top-wraper">
+    <ion-toolbar color="transparent">
+      <ion-buttons left>
+        <button ion-button icon-only>
+          <ion-icon name="contacts"></ion-icon>
+        </button>
+      </ion-buttons>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+      <ion-buttons right>
+        <button ion-button icon-only (click)="scan()">
+          <ion-icon name="qr-scanner"></ion-icon>
+        </button>
+      </ion-buttons>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    </ion-toolbar>
+    <div class="balance-wraper">
+      <p class="balance">2343433 JTC</p>
+      <div class="address">
+        <qrcode [qrdata]="'Your QR code data string'" text-center [size]="128" [level]="'M'"  (click)="copy('Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv')"></qrcode>
+      </div>
+      <br><br>
+      <div padding>
+        <ion-list>
+          <ion-item>
+            <ion-icon name="add" color="green" item-start></ion-icon>
+            <h2>Pay In</h2>
+            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="remove" color="danger" item-start></ion-icon>
+            <h2>Pay Out</h2>
+            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="add" color="green" item-start></ion-icon>
+            <h2>Pay In</h2>
+            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
+          </ion-item>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+          <ion-item>
+            <ion-icon name="add" color="green" item-start></ion-icon>
+            <h2>Pay In</h2>
+            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
+          </ion-item>
+
+        </ion-list>
+
+      </div>
+    </div>
+  </div>
 </ion-content>

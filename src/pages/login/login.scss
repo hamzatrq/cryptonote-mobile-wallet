@@ -1,0 +1,29 @@
+page-login {
+  input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #FFF !important;
+    opacity: 1 !important; /* Firefox */
+  }
+  input {
+    color: #FFF !important;
+  }
+  .bg-color {
+    background-color: #f1c40f;
+  }
+  .bg-image {
+    background-image: url('/assets/imgs/bg.jpg');
+    background-position: center;
+    background-size: cover;
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #f1c40f;
+      z-index: 9999;
+    }
+  }
+  .bg-transparent {
+    background-color: transparent;
+  }
+}

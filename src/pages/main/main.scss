@@ -1,0 +1,29 @@
+page-main {
+  .bg-image {
+    background-image: url('/assets/imgs/bg.jpg');
+    background-position: center;
+    background-size: cover;
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #f1c40f;
+      z-index: 9999;
+    }
+  }
+
+  .logo {
+    width: 50%;
+  }
+  * {
+    font-family: Arial, Helvetica, sans-serif
+  }
+  .action-btn {
+    font-weight: 700;
+  }
+  .center {
+    margin-top: 40%;
+  }
+}

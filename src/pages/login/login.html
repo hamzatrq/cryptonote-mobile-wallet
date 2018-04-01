@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Open Wallet</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  class="bg-image">
+  <div class="overlay">
+    <ion-item class="bg-transparent">
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+    <ion-item class="bg-transparent">
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" ></ion-input>
+    </ion-item>
+    <br>
+    <br>
+    <button ion-button block round large (click)="login()" color="dark">Login to Wallet</button>
+  </div>
+</ion-content>
