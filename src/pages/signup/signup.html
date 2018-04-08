@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="dark">
     <ion-title>New Wallet</ion-title>
   </ion-navbar>
 
@@ -10,19 +10,19 @@
 <ion-content  class="bg-image" padding>
   <div class="overlay" padding>
     <ion-item class="bg-transparent">
-      <ion-label floating>Email</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+      <ion-label><ion-icon name="md-person"></ion-icon></ion-label>
+      <ion-input type="email" [(ngModel)]="user.email" placeholder="Email Address"></ion-input>
     </ion-item>
     <ion-item class="bg-transparent">
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+      <ion-label><ion-icon name="md-key"></ion-icon></ion-label>
+      <ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
     </ion-item>
     <ion-item class="bg-transparent">
-      <ion-label floating>Confirm Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.confirmPassword"></ion-input>
+      <ion-label><ion-icon name="md-key"></ion-icon></ion-label>
+      <ion-input type="password" [(ngModel)]="user.confirmPassword" placeholder="Confirm Password"></ion-input>
     </ion-item>
     <br>
     <br>
-    <button ion-button block round large (click)="signup()" color="dark">Create Wallet</button>
+    <div padding>    <button ion-button block round large (click)="signup()" color="dark">Create Wallet</button></div>
   </div>
 </ion-content>

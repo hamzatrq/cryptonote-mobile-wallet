@@ -1,52 +1,59 @@
-<ion-content class="bg-color">
-  <div class="top-wraper">
-    <ion-toolbar color="transparent">
-      <ion-buttons left>
-        <button ion-button icon-only>
-          <ion-icon name="contacts"></ion-icon>
-        </button>
-      </ion-buttons>
+<ion-content>
+  <ion-toolbar color="transparent" class="bg-color">
+    <ion-title>JUSTICECOIN</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="scan()">
+        <ion-icon name="md-qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="bg-color top-wraper">
+    <p class="header-subtitle" text-center>Total Balance</p>
+    <h2 class="header-title" text-center>{{ balance }}
+      <span class="header-jtc">JTC</span>
+    </h2>
 
-      <ion-buttons right>
-        <button ion-button icon-only (click)="scan()">
-          <ion-icon name="qr-scanner"></ion-icon>
-        </button>
-      </ion-buttons>
-
-    </ion-toolbar>
-    <div class="balance-wraper">
-      <p class="balance">2343433 JTC</p>
-      <div class="address">
-        <qrcode [qrdata]="'Your QR code data string'" text-center [size]="128" [level]="'M'"  (click)="copy('Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv')"></qrcode>
-      </div>
-      <br><br>
-      <div padding>
-        <ion-list>
-          <ion-item>
-            <ion-icon name="add" color="green" item-start></ion-icon>
-            <h2>Pay In</h2>
-            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="remove" color="danger" item-start></ion-icon>
-            <h2>Pay Out</h2>
-            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="add" color="green" item-start></ion-icon>
-            <h2>Pay In</h2>
-            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
-          </ion-item>
-
-          <ion-item>
-            <ion-icon name="add" color="green" item-start></ion-icon>
-            <h2>Pay In</h2>
-            <p>Eb35QW5YDYnG7rB55K1pb61jCKg6YVuYxJJbKWkhKpteEb68C1RPHmKjRaAbUqdqH6QmWYyvNWvDQMYiwpDzt4iqTwX1eRv</p>
-          </ion-item>
-
-        </ion-list>
-
-      </div>
-    </div>
   </div>
+  <ion-grid class="bg-dark">
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button full color="white" round (click)="openPage('SendPage')">SEND</button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button full color="white" round (click)="openPage('ReceivePage')">RECEIVE</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-list-header text-center>
+      HISTORY
+    </ion-list-header>
+    <ion-item *ngIf="transactions && transactions.length == 0">
+      <p>No transections done.</p>
+    </ion-item>
+
+    <p text-center *ngIf="!transactions"><ion-spinner></ion-spinner></p>
+
+    <ng-container *ngIf="transactions">
+      <ng-container *ngFor="let transaction of transactions | orderBy: 'time' : true">
+        <ion-item *ngIf="transaction.from == user.user.address">
+          <ion-avatar item-left>
+            <img src="assets/imgs/send.png">
+          </ion-avatar>
+          <h2>-{{ transaction.amount }} JTC</h2>
+          <p>{{ transaction.to }}</p>
+        </ion-item>
+
+        <ion-item *ngIf="transaction.to == user.user.address">
+          <ion-avatar item-left>
+            <img src="assets/imgs/receive.png">
+          </ion-avatar>
+          <h2>+{{ transaction.amount }} JTC</h2>
+          <p>{{ transaction.from }}</p>
+        </ion-item>
+      </ng-container>
+    </ng-container>
+  </ion-list>
+
 </ion-content>

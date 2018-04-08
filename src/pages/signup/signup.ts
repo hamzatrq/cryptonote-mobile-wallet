@@ -1,3 +1,4 @@
+import { BackendProvider } from './../../providers/backend/backend';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
@@ -18,7 +19,8 @@ export class SignupPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public backendProvider: BackendProvider
   ) {
   }
 
@@ -51,8 +53,17 @@ export class SignupPage {
     let loading = this.loadingCtrl.create();
     loading.present();
 
-
-    loading.dismiss();
+    this.backendProvider.register(this.user.email, this.user.password).then(res => {
+      console.log(res);
+      loading.dismiss();
+      this.navCtrl.setRoot('LoginPage');
+    }).catch(err => {
+      console.log('err', err);
+      this.toastCtrl.create({
+        message: 'Please enter a valid email address and password',
+        duration: 3000
+      })
+    });
   }
 
   private _validateEmail(email) {

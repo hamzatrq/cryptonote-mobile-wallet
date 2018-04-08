@@ -1,26 +1,26 @@
 page-home {
   .bg-color {
-    background-color: #f1c40f;
+    background-color: #FFEB3B;
   }
-  .address {
-    img {
-      margin:  0 auto;
-    }
+  .bg-dark {
+    background: #2c3e50
   }
-  .balance-wraper {
-    text-align: center;
-    color: #FFF;
-    .balance {
-      font-size: 3em;
+
+  .top-wraper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    .header-subtitle {
+      font-size: 1em;
+      color: #FFF;
+      margin-bottom: 0;
     }
-    span {
-      display: block;
-      padding-left: 5%;
-      padding-right: 5%;
-      font-weight: bold;
-      ion-icon {
-        font-size: 2em;
-      }
+    .header-title {
+      font-size: 2em;
+      color: #FFF;
+      margin-top: 0;
+    }
+    .header-jtc {
+      font-size: 0.4em;
     }
   }
 }

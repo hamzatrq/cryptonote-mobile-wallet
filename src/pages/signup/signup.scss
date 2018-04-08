@@ -1,8 +1,4 @@
 page-signup {
-  input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #FFF !important;
-    opacity: 1 !important; /* Firefox */
-  }
   input {
     color: #FFF !important;
   }
@@ -10,17 +6,15 @@ page-signup {
     background-color: #FFFDF7;
   }
   .bg-image {
-    background-image: url('/assets/imgs/bg.jpg');
-    background-position: center;
-    background-size: cover;
+    background: #FFEB3B;
     .overlay {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color:rgba($color: #333, $alpha: 0.6);
       z-index: 9999;
+      padding-top: 15vh;
     }
   }
 

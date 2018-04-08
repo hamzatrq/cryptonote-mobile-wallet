@@ -1,24 +1,30 @@
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="dark">
     <ion-title>Open Wallet</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content  class="bg-image">
+<ion-content class="bg-image">
   <div class="overlay">
     <ion-item class="bg-transparent">
-      <ion-label floating>Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-label>
+        <ion-icon name="md-person"></ion-icon>
+      </ion-label>
+      <ion-input type="email" [(ngModel)]="user.email" placeholder="Email Address"></ion-input>
     </ion-item>
     <ion-item class="bg-transparent">
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" ></ion-input>
+      <ion-label>
+        <ion-icon name="md-key"></ion-icon>
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
     </ion-item>
     <br>
     <br>
-    <button ion-button block round large (click)="login()" color="dark">Login to Wallet</button>
+    <div padding>
+      <button ion-button block round large (click)="login()" color="dark">Login to Wallet</button>
+    </div>
   </div>
 </ion-content>

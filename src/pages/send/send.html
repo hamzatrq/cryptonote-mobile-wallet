@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar class="navbar" color="dark">
+    <ion-title>Send JTC</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg-color">
+  <br><br>
+  <ion-card class="card">
+    <ion-card-content text-center>
+      <ion-item>
+
+        <ion-input type="text" [(ngModel)]="form.address"  placeholder="Address"></ion-input>
+        <button ion-button icon-only clear item-right (click)="scan()">
+            <ion-icon name="md-qr-scanner"></ion-icon>
+        </button>
+
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="form.amount"  placeholder="Amount"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>FEE</ion-label>
+        <ion-input type="number" [disabled]="true" value="0.01"></ion-input>
+      </ion-item>
+
+      <br>
+
+      <button ion-button outline round (click)="send()">SEND</button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

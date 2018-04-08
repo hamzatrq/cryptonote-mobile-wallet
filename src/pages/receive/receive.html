@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar class="navbar" color="dark">
+    <ion-title>Receive JTC</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg-color">
+  <br><br>
+  <ion-card class="card">
+    <ion-card-content text-center>
+      <p text-center class="bold">SCAN QR CODE</p>
+      <br>
+      <qrcode *ngIf="address" class="qr-image" [qrdata]="address" text-center [size]="256" [level]="'M'"></qrcode>
+      <br><br>
+      <p text-center class="bold">USE ADDRESS INSTEAD</p>
+      <p class="address">{{ address }}</p>
+      <button ion-button outline round (click)="copy()">copy</button>
+      <br>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
