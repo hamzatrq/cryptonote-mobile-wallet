@@ -12,7 +12,7 @@
   <ion-card class="card">
     <ion-card-content text-center>
       <ion-item>
-
+        <ion-label fixed><ion-icon name="card"></ion-icon></ion-label>
         <ion-input type="text" [(ngModel)]="form.address"  placeholder="Address"></ion-input>
         <button ion-button icon-only clear item-right (click)="scan()">
             <ion-icon name="md-qr-scanner"></ion-icon>
@@ -20,6 +20,7 @@
 
       </ion-item>
       <ion-item>
+        <ion-label fixed><ion-icon name="cash"></ion-icon></ion-label>
         <ion-input type="number" [(ngModel)]="form.amount"  placeholder="Amount"></ion-input>
       </ion-item>
       <ion-item>

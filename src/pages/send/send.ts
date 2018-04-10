@@ -2,6 +2,7 @@ import { BackendProvider } from './../../providers/backend/backend';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,7 @@ export class SendPage {
     fee: 100
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public barcodeScanner: BarcodeScanner, public backendProvider: BackendProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public barcodeScanner: BarcodeScanner, public backendProvider: BackendProvider, public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -31,7 +32,19 @@ export class SendPage {
   }
 
   send() {
-    if(this.form.amount > 101 && this.form.address.length > 0) {
+    if (this.form.amount > 1) {
+      this.toastCtrl.create({
+        duration:3000,
+        message: 'Amount should be greater than 1 JTC'
+      }).present();
+    }
+    if(this.form.address.length !== 95 || this.form.address[0] !== 'E') {
+      this.toastCtrl.create({
+        duration:3000,
+        message: 'Please enter a valid JTC wallet address'
+      }).present();
+    }
+    if(this.form.amount > 1 && this.form.address.length == 95 && this.form.address[0] == 'E') {
       this.backendProvider.send(this.form.address, this.form.amount).then(res => {
         console.log(JSON.stringify(res));
         this.navCtrl.setRoot('HomePage');
