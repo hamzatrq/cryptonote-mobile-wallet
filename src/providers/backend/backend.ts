@@ -12,8 +12,8 @@ export class BackendProvider {
 
   login(email, password) {
     return new Promise((resolve, reject) => {
-      this.http.post<User>(this.url + 'authenticate', {email, password}).subscribe(user => {
-        if(user && user.success == true) {
+      this.http.post<User>(this.url + 'authenticate', { email, password }).subscribe(user => {
+        if (user && user.success == true) {
           this.storage.set('user', user);
           this.storage.set('access_token', user.token);
           resolve(user);
@@ -39,7 +39,7 @@ export class BackendProvider {
 
   register(email, password) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.url + 'register', {email, password}).subscribe(user => {
+      this.http.post(this.url + 'register', { email, password }).subscribe(user => {
         resolve(user);
       }, err => {
         reject(err);
@@ -52,11 +52,12 @@ export class BackendProvider {
       this.getUser().then(user => {
         const httpOptions = {
           headers: new HttpHeaders({
-            'Content-Type':  'application/json',
+            'Content-Type': 'application/json',
             'Authorization': user.token || ''
           })
         };
         this.http.get(this.url + 'balance', httpOptions).subscribe(balance => {
+          console.log(balance);
           resolve(balance);
         }, err => {
           reject(err);
@@ -64,12 +65,21 @@ export class BackendProvider {
       });
     });
   }
+
+  logout() {
+    return new Promise((resolve, reject) => {
+      this.storage.clear().then(() => {
+        resolve();
+      });
+    });
+  }
+
   getTransactions() {
     return new Promise((resolve, reject) => {
       this.getUser().then(user => {
         const httpOptions = {
           headers: new HttpHeaders({
-            'Content-Type':  'application/json',
+            'Content-Type': 'application/json',
             'Authorization': user.token || ''
           })
         };
@@ -85,11 +95,11 @@ export class BackendProvider {
       this.getUser().then(user => {
         const httpOptions = {
           headers: new HttpHeaders({
-            'Content-Type':  'application/json',
+            'Content-Type': 'application/json',
             'Authorization': user.token || ''
           })
         };
-        this.http.post(this.url + 'send', {address, amount}, httpOptions).subscribe(hash => {
+        this.http.post(this.url + 'send', { address, amount }, httpOptions).subscribe(hash => {
           resolve(hash);
         }, err => {
           reject(err);

@@ -2,14 +2,17 @@
   <ion-toolbar color="transparent" class="bg-color">
     <ion-title>JUSTICECOIN</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only (click)="scan()">
-        <ion-icon name="md-qr-scanner"></ion-icon>
+      <button ion-button icon-only (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
   <div class="bg-color top-wraper">
     <p class="header-subtitle" text-center>Total Balance</p>
-    <h2 class="header-title" text-center>{{ balance }}
+    <h2 class="header-title" text-center>{{ balance/10000 | number:'2.2-4' }}
       <span class="header-jtc">JTC</span>
     </h2>
 

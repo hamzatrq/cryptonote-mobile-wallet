@@ -32,23 +32,34 @@ export class SendPage {
   }
 
   send() {
-    if (this.form.amount > 1) {
+    if (this.form.amount < 1) {
       this.toastCtrl.create({
         duration:3000,
-        message: 'Amount should be greater than 1 JTC'
+        message: 'Amount should be greater than 1 JTC',
+        dismissOnPageChange: true
       }).present();
     }
     if(this.form.address.length !== 95 || this.form.address[0] !== 'E') {
       this.toastCtrl.create({
         duration:3000,
-        message: 'Please enter a valid JTC wallet address'
+        message: 'Please enter a valid JTC wallet address',
+        dismissOnPageChange: true
       }).present();
     }
-    if(this.form.amount > 1 && this.form.address.length == 95 && this.form.address[0] == 'E') {
-      this.backendProvider.send(this.form.address, this.form.amount).then(res => {
-        console.log(JSON.stringify(res));
-        this.navCtrl.setRoot('HomePage');
-      });
-    }
+    this.backendProvider.getUser().then(user => {
+      if(user.user.address == this.form.address) {
+        this.toastCtrl.create({
+          duration:3000,
+          message: 'You can not send to your own wallet',
+          dismissOnPageChange: true
+        }).present();
+      }
+      if(user.user.address !== this.form.address && this.form.amount > 1 && this.form.address.length == 95 && this.form.address[0] == 'E') {
+        this.backendProvider.send(this.form.address, this.form.amount).then(res => {
+          console.log(JSON.stringify(res));
+          this.navCtrl.setRoot('HomePage');
+        });
+      }
+    });
   }
 }

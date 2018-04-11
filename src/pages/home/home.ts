@@ -1,9 +1,7 @@
 import { User } from './../../providers/user';
 import { BackendProvider } from './../../providers/backend/backend';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { Clipboard } from '@ionic-native/clipboard';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -16,7 +14,7 @@ export class HomePage {
   transactions;
   user: User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private clipboard: Clipboard, public toastCtrl: ToastController, private barcodeScanner: BarcodeScanner, public backendProvider: BackendProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public backendProvider: BackendProvider, public loadingCtrl: LoadingController) {
     backendProvider.getBalance().then(bal => {
       this.balance = bal['availableBalance'];
       this.backendProvider.getUser().then(u => {
@@ -36,28 +34,33 @@ export class HomePage {
   getTransactions() {
     this.backendProvider.getTransactions().then(tr => {
       this.transactions = tr;
-      console.log(tr);
     });
   }
 
-  scan() {
-    this.barcodeScanner.scan().then(barcodeData => {
-      this.copy(barcodeData.text);
-    }).catch(err => {
-      console.log('Error', err);
-    });
-  }
-
-  copy(str) {
-    this.clipboard.copy(str).then(() => {
-      this.toastCtrl.create({
-        message: 'Address copied to clipboard',
-        duration: 3000
-      }).present();
+  refresh() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.backendProvider.getBalance().then(bal => {
+      this.balance = bal['availableBalance'];
+      this.backendProvider.getUser().then(u => {
+        this.user = u;
+        this.getTransactions();
+        loading.dismiss();
+      });
+    }, err => {
+      this.navCtrl.setRoot('MainPage')
+    }).catch(() => {
+      this.navCtrl.setRoot('MainPage')
     });
   }
 
   openPage(page: string) {
     this.navCtrl.push(page);
+  }
+
+  logout() {
+    this.backendProvider.logout().then(() => {
+      this.navCtrl.setRoot('MainPage');
+    });
   }
 }
